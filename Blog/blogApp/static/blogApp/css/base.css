@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(243, 232, 186);
+}
+haeder, .nav_bar, .nav_bar .nav_links{
+    display: flex;
+}
+.nav_bar{
+    justify-content: space-between;
+}
+.logo img{
+    width: 20px;
+}
+.nav_bar .nav_links{
+    text-decoration: none;
+}

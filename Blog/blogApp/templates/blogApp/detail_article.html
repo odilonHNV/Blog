@@ -1,0 +1,24 @@
+{% extends "blogApp/base.html" %}
+
+{% block content %}
+
+    <div class='article'>
+        <div class='image'>
+            <img src={{ article.image.url }} alt='Photo'  heigth=40% >
+        </div>
+
+        <div class='info_article'>
+            <h2><a href=# >{{article.categorie}}</a></h2>
+            <h1>{{article.title}}</h1>
+            
+            {%if article.etiquette%}
+                {%for etiquette in article.etiquette.all %}
+                    <span class='etiquette'> {{etiquette}}</span>
+                {%endfor%}
+            {%endif%}
+        
+            <p>{{article.description}}</p>
+        </div>
+    </div> 
+
+{% endblock  %}
