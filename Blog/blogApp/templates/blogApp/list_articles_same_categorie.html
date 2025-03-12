@@ -19,7 +19,7 @@
                     <h2>{{article.title}}</h2>                    
                     <div>
                         {% for etiquet in article.etiquette.all %}
-                            <span class='etiquette'><a href='{% url 'list-articles-same-etiquette' etiquet.name %}'>{{etiquet.name}}</a></span>
+                            <span class='etiquette'><a href="{% url 'blogApp:list-articles-same-etiquette' etiquet.name %}">{{etiquet.name}}</a></span>
                         {% endfor %}                                                                
                     </div>                    
                     <p>{{article.description | truncatewords:50}}</p> 
@@ -28,10 +28,10 @@
                     truncatechars : Permet d'afficher un nombre de caractère donné                    
                     -->
                     <div>
-                        <a href='{% url 'edit-article' article.id %}'>Modifier</a>
+                        <a href='{% url 'blogApp:edit-article' article.id %}'>Modifier</a>
                     </div>
                     <div class='article_lire_plus'>
-                        <a href="{% url 'detail-article' article.id %}">Lire Plus</a>
+                        <a href="{% url 'blogApp:detail-article' article.id %}">Lire Plus</a>
                     </div>
                 </div>                
             </div>

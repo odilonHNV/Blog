@@ -15,12 +15,12 @@
                     {% endif %}
                 </div>                
                 <div class='info_article'>                    
-                    <h3 class='categorie'> <a href="{% url 'categorie' article.categorie %}">{{article.categorie}}</a> </h3>
+                    <h3 class='categorie'> <a href="{% url 'blogApp:categorie' article.categorie %}">{{article.categorie}}</a> </h3>
                     <h2>{{article.title}}</h2>
                     {% if article.etiquette.all %}
                         <div>
                             {% for etiquet in article.etiquette.all %}
-                                <span class='etiquette'><a href='{% url 'list-articles-same-etiquette' etiquet.name %}'>{{etiquet.name}}</a></span>
+                                <span class='etiquette'><a href="{% url 'blogApp:list-articles-same-etiquette' etiquet.name %}">{{etiquet.name}}</a></span>
                             {% endfor %}                                                                
                         </div>
                     {%endif%}
@@ -31,7 +31,7 @@
                     -->
                     
                     <div class='article_lire_plus'>
-                        <a href="{% url 'detail-article' article.id %}">Lire Plus</a>
+                        <a href="{% url 'blogApp:detail-article' article.id %}">Lire Plus</a>
                     </div>
                 </div>                
             </div>

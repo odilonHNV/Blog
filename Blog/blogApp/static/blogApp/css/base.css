@@ -1,15 +1,36 @@
 body{
-    background-color: rgb(243, 232, 186);
+    background-color: rgb(251, 245, 243);
 }
-haeder, .nav_bar, .nav_bar .nav_links{
+*{
+    list-style: none;
+    text-decoration: none;
+}
+header, .nav_bar, .nav_bar .nav_links{
     display: flex;
-}
-.nav_bar{
     justify-content: space-between;
+    align-items: center;
+}
+header{
+    width: 80%;
+    margin: auto;
 }
 .logo img{
-    width: 20px;
+    width: 30px;
+    height: 30px;
 }
-.nav_bar .nav_links{
-    text-decoration: none;
+.nav_links li a img{
+    width: 20px;
+    height: 20px;
+}
+.recherche{
+    width: 40%;
+    background-color:rgb(199, 180, 138) ;
+    border-radius: 15px;
+}
+.nav_bar{
+    width: 60%;
+}
+.nav_links{
+    background-color: cornflowerblue;
+    width: 30%;
 }
