@@ -10,21 +10,44 @@
 
     <div class='article'>
         <div class='image'>
-            <img src={{ article.image.url }} alt='Photo'  heigth=40% >
+            <img src={{ article.image.url }} alt='Photo'  height=40% >
         </div>
 
         <div class='info_article'>
             <h2>{{article.categorie}}</h2>
             <h1>{{article.title}}</h1>
             
-            {%if article.etiquette%}
-                {%for etiquette in article.etiquette.all %}
-                    <span class='etiquette'> {{etiquette}}</span>
-                {%endfor%}
-            {%endif%}
-        
+            {%for etiquette in article.etiquette.all %}
+                <span class='etiquette'> {{etiquette}}</span>
+            {%endfor%}
             <p>{{article.description}}</p>
-        </div>
+             
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url "blogApp:detail-article" article.id%}">
+                    {% csrf_token %}
+                    {{commentaire_form.as_p}}
+                    <button type='submit'>
+                        <img  src="{% static "blogApp/image/arrow.svg"%}" alt="Envoyer">
+                    </button>                
+                </form>
+                {% if commentaires %}
+                    {% for commente in commentaires %}
+                        <div style="border:4px rgb(65, 108, 169) solid;border-radius: 8px;">
+                            <h3>{{user.username}}</h3>
+                            <p>
+                                {{commente.message_com}}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}   
+            {% endif %}
+        </div>  
     </div> 
 
 {% endblock  %}

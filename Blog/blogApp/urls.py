@@ -13,6 +13,7 @@ urlpatterns = [
     #path('<int:id>/delete/',views.delete_article,name='delete-article'),
     path('etiquette/<str:etiquette>/',views.list_articles_same_etiquette,name='list-articles-same-etiquette'),
     path('categorie/<str:categorie>/',views.list_articles_same_categorie,name='categorie'),
+    
 ]
 
 if settings.DEBUG:

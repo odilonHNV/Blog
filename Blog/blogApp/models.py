@@ -36,7 +36,8 @@ class Article(models.Model):
 class Commentaire(models.Model):
     message_com = models.CharField(max_length=200) 
     user_com = models.ForeignKey(UserProfil, on_delete=models.CASCADE,verbose_name="Auteur")
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name="Article")
+    #C'est 'related_name' qui permet au model article d'accéder à commentaire
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name="Article",related_name="commentaire")
     date_dreation = models.DateTimeField(default=timezone.now,verbose_name="Date de création")
 
     
