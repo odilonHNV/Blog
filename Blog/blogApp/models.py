@@ -35,6 +35,8 @@ class Article(models.Model):
     
 class Commentaire(models.Model):
     message_com = models.CharField(max_length=200) 
+    #ForeignKey créé une relation de many to one entre le model(one) et un autre model(many)
+    #ForeignKey créé une relation de many to one, un UserProfil peut etre associé à plusieurs commentaire
     user_com = models.ForeignKey(UserProfil, on_delete=models.CASCADE,verbose_name="Auteur")
     #C'est 'related_name' qui permet au model article d'accéder à commentaire
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name="Article",related_name="commentaire")

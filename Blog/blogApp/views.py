@@ -1,16 +1,27 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from blogApp.models import Article,Etiquette
 from blogApp.forms import ArticleForm,CommentaireForm
+from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
+from django.db.models import Q
 
 
 def list_articles(request):
     articles = Article.objects.all()
-    return render(request,'blogApp/list_articles.html',context={'articles':articles})
+    if request.method == 'GET':
+        word_search = request.GET.get('recherche')
+        if word_search is not None:
+            articles = Article.objects.filter( Q(title__icontains = word_search) |
+                                               Q(description__icontains = word_search)
+                                             )
+    return render(request,'blogApp/list_articles.html',{'articles':articles})
+
+def list_article_admin(request):
+    articles = Article.objects.all()
+    return render(request,'blogApp/list_article_admin.html',{'articles':articles})
 
 def detail_article(request,id):  
     article = get_object_or_404(Article,id=id)
-
     if request.method == 'POST':
         commentaire_form = CommentaireForm(request.POST)
         if commentaire_form.is_valid():
@@ -33,6 +44,7 @@ def detail_article(request,id):
             }
     return render(request,'blogApp/detail_article.html',context)
 
+@permission_required("blogApp.view_article")
 def create_article(request):    
     if request.method == 'POST':
         article_form = ArticleForm(request.POST,request.FILES)
@@ -54,6 +66,14 @@ def edit_article(request,id):
         article_form = ArticleForm(instance=article)
     return render(request,'blogApp/edit_article.html',context={'form':article_form})
 
+@permission_required("blogApp.delete_article", login_url="blogApp:error")
+def delete_article(request,id):
+    article = get_object_or_404(Article,id=id)
+    if request.method=='POST':
+        article.delete()
+        return redirect('blogApp:accueil')
+    return render(request,'blogApp/delete_article.html')
+
 def list_articles_same_etiquette(request,etiquette):
     etiquette_object = Etiquette.objects.get(name=etiquette)
     articles = Article.objects.filter(etiquette=etiquette_object)
@@ -61,5 +81,7 @@ def list_articles_same_etiquette(request,etiquette):
 
 def list_articles_same_categorie(request,categorie):
     articles = Article.objects.filter(categorie__iexact = categorie)
-    print(articles)
     return render(request,'blogApp/list_articles_same_categorie.html',context={'articles':articles})
+
+def error(request):
+    return render(request,'blogApp/error.html')

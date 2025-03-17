@@ -1,0 +1,10 @@
+{% extends "blogApp/base.html" %}
+
+{% block content %}
+    <h4>Êtes vous sûr de vouloir supprimer cet article !</h4>
+    <form method="post" action="">
+        {%csrf_token%}
+        <input type="submit" value="Supprimer">
+    </form>
+
+{% endblock  %}

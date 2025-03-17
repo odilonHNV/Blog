@@ -11,35 +11,42 @@
         {% block extra_css %}{%endblock%}
     </head>
     <body>
-        <header>
-            <a class="logo" href="{% url 'blogApp:accueil' %}">
-                <img src="{% static 'blogApp/image/logo.png' %}" alt="logo"> 
-            </a>
-            <nav class="nav_bar">
-                <div class="recherche">
-                    f
-                </div>
-
-                {% if user.is_authenticated %}
-                    <ul class="nav_links">
-                        <li>
-                            <a href="{% url 'user:logout-user' %}">Deconnexion</a>
-                        </li>
-                    </ul>
-                {% else %}
-                    <ul class="nav_links">
-                        <li>
-                            <a href="{% url 'user:login-user' %}">Connexion</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'user:register-user' %}">Inscription <img class="arrow" src="{% static "blogApp/image/arrow.svg"%}"></a>
-                        </li>
-                    </ul>
-                {% endif %}
+        <header>            
+            <nav class="nav_bar" style="">
+                <a class="logo" href="{% url 'blogApp:accueil' %}">
+                    <img src="{% static 'blogApp/image/logo.png' %}" alt="logo"> 
+                </a>
+                <form>
+                    {% csrf_token %}
+                    <input type="search" placeholder="Rechercher un article" name="recherche" class="search">
+                    <button type="submit" class="button_search">
+                        Search
+                    </button>
+                </form>               
                 
+                <div class"profil" style="width:22%;">
+                    {% if user.is_authentificated %}
+                        <a class="profil" href="{% url 'blogApp:accueil' %}">
+                            <img src="{% static 'blogApp/image/profil.png' %}" alt="profil"> 
+                        </a>
+                        <div class="drop_down">
+                            <ul>
+                                <li><a href="#">Mon compte</a></li>
+                                <li class="admin_gestion"><a href="{% url 'blogApp:list-article-admin' %}">Gestion des article</a></li>
+                                <li><a href="{% url 'user:logout-user' %}">Deconnexion</a></li>
+                            </ul>                          
+                        </div>
+                    {%else%}
+                        <ul class="nav_links">
+                            <li><a href="{% url 'user:login-user' %}">Connexion</a></li>
+                            <li><a href="{% url 'user:register-user' %}">Inscription</a></li>
+                        </ul>
+                    {% endif %}
+                    
+                </div>                
             </nav>
         </header>
-
+        <div></div>
         {% block content %}
         
         {% endblock  %}

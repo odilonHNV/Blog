@@ -1,0 +1,40 @@
+h5, .entete{
+    max-width: 65%;
+    min-width: 30%;
+    margin: auto;
+}
+.entete{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.creer_article{
+    padding: 8px;
+    color: white;
+    background-color: rgb(15, 15, 212);
+    border-radius: 12px;
+}
+h5{
+    border-bottom: 5px solid rgb(222, 184, 14);
+}
+.article{
+    justify-content: space-between;
+    border: 1.5px solid rgb(68, 117, 171);
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+.article .title{
+    width: 60%;
+}
+.list_article{
+    background-color: rgb(235, 241, 241); 
+    
+}
+.article{
+    border-bottom: 2px rgb(13, 13, 13) solid;
+    box-shadow: 2px ;
+    background-color: rgb(232, 232, 232);
+    display: flex;
+}

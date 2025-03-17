@@ -1,0 +1,32 @@
+{% extends "blogApp/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href=" {% static 'blogApp/css/list_article_admin.css' %} ">    
+{% endblock  %}
+
+{% block content %}
+    <div class="gestion_article">
+        <div class="entete">
+            <div>
+                <h3>Article</h3>
+                <p>Interface d'administration du blog</p> 
+            </div>
+            <a class="creer_article" href=#>Créer un article</a>
+        </div>
+        <h5>Titre</h5>
+        <div class="list_article">
+            {% for article in articles  %}
+                <div class="article">
+                    <span class="title">{{article.title}}</span>
+                    <a href=#>Voir article</a>
+                    <a href=#>Editer</a>
+                    <a href=#>Supprimer</a>
+                </div>            
+            {% endfor %}        
+        </div>
+    </div>    
+
+<div></div>
+
+{% endblock  %}
