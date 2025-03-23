@@ -1,22 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        {% for message in messages%}
-            <p style="color:red"> {{message}} </p>
-        {%endfor%}
+{% extends "base_user.html" %}
 
-        <form action='' method='post'>
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type='submit' value='CONNEXION'>
-        </form>
-    </body>
-</html>
+{%load static%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "user/login.css" %}">
+{% endblock  %}
+{% block content %}
+    <div class="form_style">
+        <div class="form_style2">
+            <a class="logo" href="{% url 'blogApp:accueil' %}">
+                <img src="{% static 'blogApp/image/logo.png' %}" alt="logo"> 
+            </a>
+            <div class="form_card">
+                <h2> Connexion </h2>
+                <form action="" method="post">
+                    {%csrf_token%}
+                    <div class="form_field">
+                        {{form.username.label_tag}}
+                        {{form.username}}
+                    </div>
+                    <div class="form_field">
+                        {{form.password.label_tag}}
+                        {{form.password}}
+                    </div>   
+                    <button type="submit">Se connecter</button>
+                </form>
+            </div> 
+            <p> <a href="{% url 'user:password_reset' %}">Mot de passe oublié ?</a></p>
+        </div>
+        
+    </div> 
+
+    <div></div>
+    
+{% endblock  %}

@@ -1,15 +1,16 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from user.forms import UserProfilCreationForm
 from django.contrib import messages
+from user.models import UserProfil
 
 
 def login_user(request):
     if request.method == 'POST':
         username = request.POST["username"]
         password = request.POST["password"]
-        user = authenticate(request,username = username,password = password)
-
+        user = authenticate(request,username = username, password = password)
         if user is not None:
             login(request,user)
             return redirect('blogApp:accueil')
@@ -26,11 +27,13 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserProfilCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect ('user:login-user')
     else:
-        form = UserCreationForm()
+        form = UserProfilCreationForm()
     return render(request,'register_user.html',{'form':form})
     
+def password_reset_user(request):
+    return render(request,'password_reset_user.html')

@@ -1,24 +1,24 @@
 body{
-    background-color: rgb(251, 245, 243);
+    background-color: white;
 }
-*{
+ul, li{
     list-style: none;
     text-decoration: none;
+    margin: auto;
 }
 header{
-    width: 65%;
+    width: 63%;
     margin: auto;
+    margin-top: 25px;
 }
 .nav_bar, .nav_links{
     display: flex;
+}
+.nav_bar, .nav_links{
     justify-content: space-between;
     align-items: center;
 }
-.nav_bar{
-    width: 100%;
-    
-}
-.logo img, .profil img{
+.logo img, .profil_image {
     width: 30px;
     height: 30px;
 }
@@ -33,23 +33,45 @@ header{
     border-radius: 5px;
     padding: 5px;
 }
-.profil{
-    width:22%;
+.nav_bar .gestion{
+    position: relative;
+}
+.nav_links li  a{
+    margin: 0px 14px;
+    list-style: none;
+    text-decoration: none;
 }
 .drop_down{
-    border: 1px solid blue;
-    box-shadow: 5px 20px 9px rgba(211, 15, 15, 0.841);
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 140px;
+    height: auto;
+    box-shadow: 1px 1px 5px rgb(15, 15, 15);
+    right: 5px;
+    top: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+.drop_down li{
+    margin: 6px 10px;
+    color: rgb(30, 126, 9);
+}
+.drop_down.disp{
+    display: block;
 }
 
 .list_article{
-    background-color: rgb(235, 241, 241);
-    max-width: 65%;
-    min-width: 30%;
+    width: 65%;
     margin: auto;
 }
 .article{
-    border-bottom: 1px rgb(13, 13, 13) solid;
-    box-shadow: 2px ;
-    background-color: rgb(232, 232, 232);
+    width: 96%;
+    border-bottom: 1px rgb(13, 13, 13) dotted;
+    margin: auto;
+    padding: 40px 0px;    
+    background-color: white;
     display: flex;
+    justify-content: space-between;
+
 }

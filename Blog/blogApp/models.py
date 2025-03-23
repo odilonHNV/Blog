@@ -23,7 +23,7 @@ class Article(models.Model):
     description = models.TextField(max_length=1500,verbose_name='Description article')
     categorie = models.CharField(max_length=30, choices=Categorie.choices,verbose_name='Catégorie article')
     etiquette = models.ManyToManyField(Etiquette,blank=True,verbose_name='Etiquette(s) article')
-    image = models.ImageField(upload_to='Image/')
+    image = models.ImageField(upload_to='image/')
 
     def save(self,*args, **kwargs):
         if not self.slug:

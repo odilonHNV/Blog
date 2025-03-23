@@ -13,9 +13,18 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'odilontest05@gmail.com'
+EMAIL_HOST_PASSWORD = 'qvyusitldayfhwkc'
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-#TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
+#TEMPLATES_DIR = os.path.join(BASE_DIR,'templates') 
 
 
 # Quick-start development settings - unsuitable for production
@@ -58,7 +67,7 @@ ROOT_URLCONF = 'Blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,10 +130,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,"blogApp/static/")
+    os.path.join(BASE_DIR,'blogApp/static/')
     ]
-MEDIA_URL = 'Image/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'Image/')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

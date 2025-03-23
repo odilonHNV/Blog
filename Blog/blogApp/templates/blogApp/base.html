@@ -24,31 +24,35 @@
                     </button>
                 </form>               
                 
-                <div class"profil" style="width:22%;">
-                    {% if user.is_authentificated %}
-                        <a class="profil" href="{% url 'blogApp:accueil' %}">
-                            <img src="{% static 'blogApp/image/profil.png' %}" alt="profil"> 
-                        </a>
-                        <div class="drop_down">
+                <div class="gestion" style="">
+                    {% if user.is_authenticated %}
+                        <img src="{% static 'blogApp/image/profil.png' %}" class="profil_image" alt="profil"> 
+    
+                        <div class="drop_down ">
                             <ul>
-                                <li><a href="#">Mon compte</a></li>
+                                <li><a href="{% url 'user:password_reset'%}">Mon compte</a></li>
                                 <li class="admin_gestion"><a href="{% url 'blogApp:list-article-admin' %}">Gestion des article</a></li>
                                 <li><a href="{% url 'user:logout-user' %}">Deconnexion</a></li>
                             </ul>                          
                         </div>
                     {%else%}
                         <ul class="nav_links">
-                            <li><a href="{% url 'user:login-user' %}">Connexion</a></li>
-                            <li><a href="{% url 'user:register-user' %}">Inscription</a></li>
+                            <li><a href="{% url 'user:login-user' %}" >Connexion</a></li>
+                            <li><a href="{% url 'user:register-user' %}" >Inscription</a></li>
                         </ul>
                     {% endif %}
                     
                 </div>                
             </nav>
         </header>
-        <div></div>
+        
+        
         {% block content %}
         
         {% endblock  %}
+        
+        <script src="{% static 'blogApp/js/base.js' %}" defer></script>
+    
+        <div></div>
     </body>
 </html>

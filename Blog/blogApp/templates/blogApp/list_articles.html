@@ -11,7 +11,7 @@
             <div class='article'>
                 <div class='image'>
                     {% if article.image %}
-                        <img src={{ article.image.url }} alt='Photo'> <!-- Vérifier l'url-->
+                        <img src="{{ article.image.url }}" alt="Photo"> <!-- Vérifier l'url-->
                     {% endif %}
                 </div>                
                 <div class='info_article'>                    
@@ -24,20 +24,22 @@
                             {% endfor %}                                                                
                         </div>
                     {%endif%}
+                    
                     <p>{{article.description | truncatewords:50}}</p> 
                     <!--
                     truncatewords : Permet d'afficher un nombre de mot donné
-                    truncatechars : Permet d'afficher un nombre de caractère donné                    
+                    truncatechars : Permet d'afficher un nombre de caractère donné      
+                    
+                    <hr>   Pour mettre un tiret d'espacement
                     -->
                     
                     <div class='article_lire_plus'>
                         <a href="{% url 'blogApp:detail-article' article.id %}">Lire Plus</a>
-                        <a class="logo" href="{% url 'blogApp:delete-article' article.id %}"> 
-                            <img src="{%static 'blogApp/image/logo.png'%}">
-                        </a>
-                        <a class="logo" href="{% url 'blogApp:list-article-admin'%}"> 
-                            <img src="{%static 'blogApp/image/logo.png'%}">
-                        </a>
+        
+                    </div>
+                    <div class='article_lire_plus'>
+                        <a href="{% url 'user:password-reset-user' %}">info</a>
+        
                     </div>
                 </div>                
             </div>
