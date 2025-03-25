@@ -2,12 +2,14 @@ body{
     background-color: white;
 }
 *{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:Arial, sans-serif
 }
-ul, li{
+ul, li,.drop_down ul li a,.nav_links li  a{
     list-style: none;
     text-decoration: none;
-    margin: auto;
+}
+ul, li,.drop_down ul li a{    
+    margin: 0px;
 }
 header{
     width: 63%;
@@ -41,8 +43,6 @@ header{
 }
 .nav_links li  a{
     margin: 0px 14px;
-    list-style: none;
-    text-decoration: none;
 }
 .drop_down{
     display: none;

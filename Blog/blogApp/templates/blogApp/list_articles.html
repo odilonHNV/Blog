@@ -6,6 +6,11 @@
 {% endblock  %}
 
 {%block content%}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message"> {{message}} </p>
+        {% endfor %}
+    {% endif %}
     <div class='list_article'>
         {%for article in articles%}
             <div class='article'>
@@ -37,12 +42,10 @@
                         <a href="{% url 'blogApp:detail-article' article.id %}">Lire Plus</a>
         
                     </div>
-                    <div class='article_lire_plus'>
-                        <a href="{% url 'user:password-reset-user' %}">info</a>
-        
-                    </div>
                 </div>                
             </div>
         {%endfor%} 
     </div>         
+
+    <script src={% static "blogApp/js/list_article.js" %} defer></script>
 {% endblock %}

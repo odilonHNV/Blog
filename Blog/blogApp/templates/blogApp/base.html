@@ -30,7 +30,7 @@
     
                         <div class="drop_down ">
                             <ul>
-                                <li><a href="{% url 'user:password_reset'%}">Mon compte</a></li>
+                                <li style=""><a href="{% url 'user:password-reset-user'%}">Mon compte</a></li>
                                 <li class="admin_gestion"><a href="{% url 'blogApp:list-article-admin' %}">Gestion des article</a></li>
                                 <li><a href="{% url 'user:logout-user' %}">Deconnexion</a></li>
                             </ul>                          
@@ -46,12 +46,10 @@
             </nav>
         </header>
         
-        
         {% block content %}
         
         {% endblock  %}
         
-        <script src="{% static 'blogApp/js/base.js' %}" defer></script>
     
         <div></div>
     </body>

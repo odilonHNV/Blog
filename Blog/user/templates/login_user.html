@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="{% static "user/login.css" %}">
 {% endblock  %}
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="message"> {{message}} </p>
+        {% endfor %}
+    {% endif %}
     <div class="form_style">
         <div class="form_style2">
             <a class="logo" href="{% url 'blogApp:accueil' %}">
