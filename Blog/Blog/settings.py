@@ -19,7 +19,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'odilontest05@gmail.com'
-EMAIL_HOST_PASSWORD = 'qvyusitldayfhwkc'
+EMAIL_HOST_PASSWORD = 'kzbrultvjppzxubw'
+
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

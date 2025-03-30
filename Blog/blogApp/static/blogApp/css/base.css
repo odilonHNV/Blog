@@ -8,8 +8,14 @@ ul, li,.drop_down ul li a,.nav_links li  a{
     list-style: none;
     text-decoration: none;
 }
-ul, li,.drop_down ul li a{    
-    margin: 0px;
+ul, li{    
+    margin: 0px;    
+}
+.drop_down ul{    
+    padding: 0px;
+}
+.drop_down ul li{    
+    font-size: 0.9em;
 }
 header{
     width: 63%;
@@ -56,9 +62,8 @@ header{
     background-color: white;
     border-radius: 10px;
 }
-.drop_down li{
+.drop_down ul li{
     margin: 6px 10px;
-    color: rgb(30, 126, 9);
 }
 .drop_down.disp{
     display: block;

@@ -1,0 +1,45 @@
+{% extends "blogApp/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'user/css/change_profil_image.css' %}">
+{% endblock  %}
+
+{% block content %}    
+    <div class="image_profil">
+        {% if user.user_image %}
+            <img src= "{{user.user_image.url}}" alt="Image profil">
+        {% else %}
+            <img src= {% static "user/image/avatar.png" %}>
+            <div>Vous n'avez pas d'image de profil</div>
+        {% endif %}
+
+        <form method='post' action='' enctype="multipart/form-data">
+            {%csrf_token%}
+            <label for="{{form.user_image.id_for_label}}" class="custom-file-upload"> Choisir une image</label>
+            {{form.user_image}}
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>    
+
+    
+
+<div></div>
+{% endblock  %}
+
+<!--
+    Le rôle de enctype="multipart/form-data" est crucial lors de l'envoi de fichiers via un formulaire HTML. 
+    Voici une explication détaillée :
+
+    Objectif principal :
+
+    Permet l'envoi de fichiers (images, documents, etc.) via un formulaire HTML
+    Transforme la façon dont les données du formulaire sont encodées avant l'envoi au serveur
+
+
+    Fonctionnement technique :
+
+    Par défaut, les formulaires HTML utilisent enctype="application/x-www-form-urlencoded"
+    Cette méthode par défaut ne permet pas l'envoi de fichiers binaires
+    multipart/form-data divise le formulaire en plusieurs parties, chacune contenant différents types de données
+-->

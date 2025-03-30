@@ -1,10 +1,18 @@
 {% extends "blogApp/base.html" %}
+{%load static%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "blogApp/css/delete_article.css" %}">
+{% endblock  %}
 
 {% block content %}
-    <h4>Êtes vous sûr de vouloir supprimer cet article !</h4>
-    <form method="post" action="">
-        {%csrf_token%}
-        <input type="submit" value="Supprimer">
-    </form>
+    <div class="article_delete">
+        <h4>Êtes vous sûr de vouloir supprimer cet article !</h4>
+        <form method="post" action="">
+            {%csrf_token%}
+            <input type="submit" value="Supprimer">
+        </form>
+    </div>
+    
 
 {% endblock  %}

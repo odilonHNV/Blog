@@ -8,6 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "blogApp/css/base.css" %}">
+        <script src="{% static "blogApp/js/base.js" %}" defer></script>
         {% block extra_css %}{%endblock%}
     </head>
     <body>
@@ -31,8 +32,11 @@
                         <div class="drop_down ">
                             <ul>
                                 <li style=""><a href="{% url 'user:password-reset-user'%}">Mon compte</a></li>
-                                <li class="admin_gestion"><a href="{% url 'blogApp:list-article-admin' %}">Gestion des article</a></li>
+                                {% if perms.blogApp.all_article %}
+                                    <li><a href="{% url 'blogApp:list-article-admin' %}">Gestion des article</a></li>
+                                {% endif %}                                
                                 <li><a href="{% url 'user:logout-user' %}">Deconnexion</a></li>
+                                <li><a href="{% url 'user:change-profil-image'%}">Changer profil</a></li>
                             </ul>                          
                         </div>
                     {%else%}
@@ -45,11 +49,19 @@
                 </div>                
             </nav>
         </header>
-        
+
+        {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+        {% endif %}
+
         {% block content %}
         
         {% endblock  %}
         
+        {% block extra_js %}
+        {% endblock  %}
     
         <div></div>
     </body>

@@ -5,6 +5,17 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib import messages
 from django.db.models import Q
 
+# Username:Odilon  Pass:Odilon
+"""
+    Pour exemple de permission pour le user
+        user.has_perm()
+            .all()  les permissions à ajouter à l'utilisateur courant
+            .add(<perm1>,<perm2>,...) ajout des permissions citer
+            .remove(<perm1>,<perm2>,...) supprime des permissions citer
+            .set([]) citer les permissions à ajouter à l'utilisateur courant
+            .clear() Supprime toute les permission pour l'utilisateur courrant
+"""
+
 
 def list_articles(request):
     articles = Article.objects.all()
@@ -15,6 +26,7 @@ def list_articles(request):
                                                Q(description__icontains = word_search)
                                              )
     return render(request,'blogApp/list_articles.html',{'articles':articles})
+
 
 def list_article_admin(request):
     articles = Article.objects.all()
@@ -28,7 +40,7 @@ def detail_article(request,id):
             #sauvergarde sans pour autant valider vers la base de donné
             commentaire=commentaire_form.save(commit = False)            
             commentaire.article=article
-            commentaire.user_com = request.user.user_profil
+            commentaire.user = request.user.user_profil
             commentaire.save()     
             messages.success(request,"Commentaire bien créer")
             return redirect('blogApp:detail-article', id=article.id)
@@ -40,11 +52,11 @@ def detail_article(request,id):
     context = { 'article':article,
                 'commentaire_form':commentaire_form ,
                 #Dans le model 'related_name' est important 
-                'commentaires': article.commentaire.all()
+                'commentaires': article.commentaire.order_by('-date_reaction')
             }
     return render(request,'blogApp/detail_article.html',context)
 
-@permission_required("blogApp.view_article")
+@permission_required("blogApp.view_article",raise_exception = True)
 def create_article(request):    
     if request.method == 'POST':
         article_form = ArticleForm(request.POST,request.FILES)
@@ -55,6 +67,7 @@ def create_article(request):
         article_form = ArticleForm()
     return render(request,'blogApp/create_article.html',context={'form':article_form})
 
+@permission_required("blogApp.change_article", login_url= "blogApp:error")
 def edit_article(request,id):
     article = Article.objects.get(id = id)    
     if request.method == 'POST':

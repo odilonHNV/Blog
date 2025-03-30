@@ -16,7 +16,7 @@
             <div class='article'>
                 <div class='image'>
                     {% if article.image %}
-                        <img src="{{ article.image.url }}" alt="Photo"> <!-- Vérifier l'url-->
+                        <img src="{{ article.image.url }}" alt="Photo"> 
                     {% endif %}
                 </div>                
                 <div class='info_article'>                    
@@ -47,5 +47,7 @@
         {%endfor%} 
     </div>         
 
-    <script src={% static "blogApp/js/list_article.js" %} defer></script>
+    {% block extra_js %}
+        <script src={% static "blogApp/js/list_article.js" %} defer></script>
+    {% endblock  %}
 {% endblock %}

@@ -9,3 +9,21 @@
     </form>
 
 {% endblock  %}
+
+
+<!--
+    Le rôle de enctype="multipart/form-data" est crucial lors de l'envoi de fichiers via un formulaire HTML. 
+    Voici une explication détaillée :
+
+    Objectif principal :
+
+    Permet l'envoi de fichiers (images, documents, etc.) via un formulaire HTML
+    Transforme la façon dont les données du formulaire sont encodées avant l'envoi au serveur
+
+
+    Fonctionnement technique :
+
+    Par défaut, les formulaires HTML utilisent enctype="application/x-www-form-urlencoded"
+    Cette méthode par défaut ne permet pas l'envoi de fichiers binaires
+    multipart/form-data divise le formulaire en plusieurs parties, chacune contenant différents types de données
+-->

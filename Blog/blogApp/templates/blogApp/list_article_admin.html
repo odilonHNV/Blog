@@ -14,14 +14,14 @@
             </div>
             <a class="creer_article" href=#>Créer un article</a>
         </div>
-        <h5>Titre</h5>
+        <h4>Titre</h4>
         <div class="list_article">
             {% for article in articles  %}
                 <div class="article">
                     <span class="title">{{article.title}}</span>
-                    <a href=#>Voir article</a>
-                    <a href=#>Editer</a>
-                    <a href=#>Supprimer</a>
+                    <a href={% url "blogApp:detail-article" article.id %}>Voir article</a>
+                    <a href={% url "blogApp:edit-article" article.id %}>Editer</a>
+                    <a href={% url "blogApp:delete-article" article.id %}>Supprimer</a>
                 </div>            
             {% endfor %}        
         </div>

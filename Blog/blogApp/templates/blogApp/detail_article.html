@@ -3,51 +3,66 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel='stylesheet' href="{% static 'blogApp/css/list_article.css' %}">    
+    <link rel='stylesheet' href="{% static 'blogApp/css/detail_article.css' %}">    
 {% endblock %}
 
 {% block content %}
 
-    <div class='article'>
-        <div class='image'>
-            <img src={{ article.image.url }} alt='Photo'  height=40% >
+    <div class='article_general'>
+        <div class='article'>
+            <div class='image'>
+                <img src={{ article.image.url }} alt='Photo'>
+            </div>
+            <div class='info_article'>
+                <h2>{{article.categorie}}</h2>
+                <h1>{{article.title}}</h1>
+                
+                {%for etiquette in article.etiquette.all %}
+                    <span class='etiquette'> {{etiquette}}</span>
+                {%endfor%}
+                <p>{{article.description}}</p>
+            </div> 
         </div>
 
-        <div class='info_article'>
-            <h2>{{article.categorie}}</h2>
-            <h1>{{article.title}}</h1>
-            
-            {%for etiquette in article.etiquette.all %}
-                <span class='etiquette'> {{etiquette}}</span>
-            {%endfor%}
-            <p>{{article.description}}</p>
-             
+        <div class="commentaire">
             {% if user.is_authenticated %}
-                <form method="post" action="{% url "blogApp:detail-article" article.id%}">
+                <form method="post" action="{% url "blogApp:detail-article" article.id %}">
                     {% csrf_token %}
-                    {{commentaire_form.as_p}}
+                    {{commentaire_form.message_com}}
                     <button type='submit'>
-                        <img  src="{% static "blogApp/image/arrow.svg"%}" alt="Envoyer">
+                        <img  src="{% static "blogApp/image/envoie_commentaire.png"%}" alt="Envoyer">
                     </button>                
                 </form>
                 {% if commentaires %}
                     {% for commente in commentaires %}
-                        <div style="border:4px rgb(65, 108, 169) solid;border-radius: 8px;">
-                            <h3>{{user.username}}</h3>
-                            <p>
-                                {{commente.message_com}}
-                            </p>
-                        </div>
-                    {% endfor %}
+                        <div class="commentaire_contains">
+                            <div class="image_profil">
+                                {% if commente.user.user_image %}
+                                    <img src={{commente.user.user_image.url}} alt="Profil image">
+                                {% else%}
+                                    <img src={% static "blogApp/image/avatar.png" %} alt="Profil image">
+                                {% endif %}                                
+                            </div>
+                            <div class="commentaire_message">
+                                <div class="commentaire_message_user">
+                                    <h3>{{commente.user.user.username}}</h3>
+                                    <small>
+                                        {{commente.date_reaction |date:"d/m/Y H:i:s"}}
+                                    </small>
+                                </div>                                
+                                <p>
+                                    {{commente.message_com}}
+                                </p>
+                            </div>
+                        </div>                        
+                    {% endfor %}                  
                 {% endif %}
                 
-                {% if messages %}
-                    {% for message in messages %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                {% endif %}   
             {% endif %}
-        </div>  
+        </div>            
+         
     </div> 
+
+    <div></div>
 
 {% endblock  %}

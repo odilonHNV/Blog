@@ -1,0 +1,12 @@
+.article_delete{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+form input{
+    padding: 6px 12px;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+}
